@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('login', function () {
+    return view('sesion.login');
+});
+Route::get('register', function () {
+    return view('sesion.register');
+});
+Route::get('programador', function () {
+    return view('programadorCursos.index');
+});
