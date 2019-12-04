@@ -1,90 +1,53 @@
 <!DOCTYPE html>
 @extends('layouts.app')
 @section('content')
-<div class="content-panel">
-        <table class="table table-striped table-advance table-hover">
-          <h4><i class="fa fa-angle-right"></i> Advanced Table</h4>
-          <hr>
-          <thead>
-            <tr>
-              <th><i class="fa fa-bullhorn"></i> Company</th>
-              <th class="hidden-phone"><i class="fa fa-question-circle"></i> Descrition</th>
-              <th><i class="fa fa-bookmark"></i> Profit</th>
-              <th><i class=" fa fa-edit"></i> Status</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <a href="basic_table.html#">Company Ltd</a>
-              </td>
-              <td class="hidden-phone">Lorem Ipsum dolor</td>
-              <td>12000.00$ </td>
-              <td><span class="label label-info label-mini">Due</span></td>
-              <td>
-                <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="basic_table.html#">
-                  Dashio co
-                  </a>
-              </td>
-              <td class="hidden-phone">Lorem Ipsum dolor</td>
-              <td>17900.00$ </td>
-              <td><span class="label label-warning label-mini">Due</span></td>
-              <td>
-                <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="basic_table.html#">
-                  Another Co
-                  </a>
-              </td>
-              <td class="hidden-phone">Lorem Ipsum dolor</td>
-              <td>14400.00$ </td>
-              <td><span class="label label-success label-mini">Paid</span></td>
-              <td>
-                <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="basic_table.html#">Dashio ext</a>
-              </td>
-              <td class="hidden-phone">Lorem Ipsum dolor</td>
-              <td>22000.50$ </td>
-              <td><span class="label label-success label-mini">Paid</span></td>
-              <td>
-                <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="basic_table.html#">Total Ltd</a>
-              </td>
-              <td class="hidden-phone">Lorem Ipsum dolor</td>
-              <td>12120.00$ </td>
-              <td><span class="label label-warning label-mini">Due</span></td>
-              <td>
-                <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+<div class="container">
+  <br><br><br>
+  <h2>Cursos de actualización</h2>
+  {{-- @php
+      dd($cursos);
+  @endphp        --}}
+  @if ($cursos->count()>0)
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Nombre del curso</th>
+        <th>Descripción</th>
+        <th>Cupo disponible</th>
+        <th>Aula</th>
+        <th>Horario</th>
+        <th>duración</th>
+        <th>Fecha de inicio</th>
+        {{-- <th>Fecha a concluir</th> --}}
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach ($cursos as $curso)
+        <tr>
+        <td>{{$curso->nombre}}</td>
+        <td>{{$curso->descripcion}}</td>
+        <td>{{$curso->cupo_disponible}}</td>
+        <td>{{$curso->aula}}</td>
+        <td>{{$curso->horario}}</td>
+        <td>{{$curso->duracion}}</td>
+        <td>{{$curso->fecha_inicio}}</td>
+        {{-- <td>{{$curso->fecha_final}}</td> --}}
+        <td>
+          {{-- <form action="{{route()}}" method="POST"> --}}
+              <button type="submit" class="btn btn-success btn-sm"
+                  onclick="return confirm('Quiere borrar la categoria: ?')" >
+                  Inscribirse <span class="fa fa-pencil-square-o"></span>
+              </button></td>
+          {{-- </form> --}}
+         
+        </tr>
+      @endforeach
+    @else
+        <p>No hay cursos de actualización disponibles</p>
+    @endif
+      
+    </tbody>
+  </table>
+</div>
 @endsection

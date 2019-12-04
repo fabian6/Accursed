@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ControladorCursos@index');
 Route::get('login', function () {
     return view('sesion.login');
 });
@@ -23,3 +21,7 @@ Route::get('register', function () {
 Route::get('programador', function () {
     return view('programadorCursos.index');
 });
+// CURSOS DE ACTUALIZACION
+Route::resource('cursos','ControladorCursos');
+Route::post('inscribir','ControladorCursos@inscribir')->name('inscribirse');
+//
