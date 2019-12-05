@@ -18,9 +18,11 @@ Route::get('login', function () {
 Route::get('register', function () {
     return view('sesion.register');
 });
-Route::get('programador', function () {
-    return view('programadorCursos.index');
-});
+// Programador de Cursos
+//*Instructor
+Route::get('/evaluar-alumno','ControladorProgramador@evaluar_alumno');
+Route::get('/enviar-evaluacion-alumno','ControladorProgramador@enviar_evaluacion_alumno');
+
 // CURSOS DE ACTUALIZACION
 Route::resource('cursos','ControladorCursos');
 Route::post('inscribir','ControladorCursos@inscribir')->name('inscribirse');
