@@ -59,12 +59,7 @@ class ControladorCursos extends Controller
     {
         //
     }
-    /**
-     * Metodo que se encarga de relacionar a un usuario con un curso de actualizacion
-     */
-    public function inscribir($idUsuario,$idCurso){
-
-    }
+   
 
     /**
      * Update the specified resource in storage.
@@ -78,6 +73,19 @@ class ControladorCursos extends Controller
         //
     }
 
+     /**
+      * ESTA MADRE SE VA A MOVER AL CONTROLADOR DEL USUARIO, cuando giovanni termine el login y el registro
+     * Metodo que se encarga de relacionar a un usuario con un curso de actualizacion
+     */
+    public function inscribir($idUsuario,$idCurso){
+        $usuario= auth()->user()->id;
+        $curso= Curso::findOrFail($idUsuario);
+
+        $usuario->cursos()->attach($curso);
+        return view('');
+
+    }
+    
     /**
      * Remove the specified resource from storage.
      *
