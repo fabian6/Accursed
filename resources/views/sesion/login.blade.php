@@ -144,24 +144,24 @@
                                 @foreach ($errors->all() as $error)
                                     {{$error}}
                                 @endforeach
-                            </div> 
+                            </div>
                         @endif
                         <h5 class="card-title text-center">Acceder</h5>
                         <form method="POST" action="">
                             @csrf
-                
+
                             <div class="form-label-group">
                                 <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Ingresar email" value="{{ old('email') }}" required>
                                 <label for="inputEmail">Correo Electrónico</label>
                             </div>
-                            
+
                             <hr>
-                
+
                             <div class="form-label-group">
                                 <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Ingresar contraseña" required>
                                 <label for="inputPassword">Contraseña</label>
                             </div>
-                
+
                             <button class="btn btn-lg btn-primary btn-block" type="submit">{{ __('Iniciar sesión') }}</button>
                             <a class="d-block text-center mt-2 small" href="register">{{ __('¿No tienes una cuenta? Regístrate.') }}</a>
                         </form>
