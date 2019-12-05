@@ -82,6 +82,7 @@ class CreateTablas extends Migration
             $table->increments('id');
             $table->integer('curso_id')->nullable()->unsigned();
             $table->integer('usuario_id')->nullable()->unsigned();
+            $table->boolean('aprobado')->default(0);
             
         });
 

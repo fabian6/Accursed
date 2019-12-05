@@ -14,7 +14,12 @@ class Usuario extends Model
     ];
 
     public $timestamps = false;
+    /**
+     * Funcion que relaciona muchos a muchos a la tabla usuarios con la tabla cursos
+     * Al agregar un nuevo atributo a la tabla pivote, es necesario relacionarlo con la funcion 'withPivot(['atributo deseado'])'
+     * 
+     */
     public function cursos(){
-        return $this->belongsToMany('App\Curso','cursos_usuarios');
+        return $this->belongsToMany('App\Curso','cursos_usuarios')->withPivot(['aprobado']);
     }
 }

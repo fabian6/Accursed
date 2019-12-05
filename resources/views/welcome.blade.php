@@ -36,7 +36,7 @@
         <td>
           {{-- <form action="{{route()}}" method="POST"> --}}
               <button type="submit" class="btn btn-success btn-sm"
-                  onclick="return confirm('Quiere borrar la categoria: ?')" >
+                  onclick="return confirm('todavia no esta listo este boton, brga')" >
                   Inscribirse <span class="fa fa-pencil-square-o"></span>
               </button></td>
           {{-- </form> --}}
