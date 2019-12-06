@@ -20,7 +20,10 @@
                 <ul class="dropdown-menu" role="menu">
                     <li>Rol: </li>
                     <li class="divider"></li>
-                    <li> <a href="#"> <i class="fa fa-power-off"></i>Salir</a> </li>
+                    <form id = 'cerrarSesionForm' action="{{ route('cerrarSesion') }}" method="POST">
+                        @csrf
+                        <li onclick="cerrarSesionForm.submit();" >Cerrar sesión</button>
+                    </form>
                 </ul>
             @endauth
             
@@ -48,7 +51,7 @@
                         </a>
                     </li>
                 @endif
-                @if ( Auth::ProgramadorCurso() )
+                @if ( Auth::guard('programador')->user() )
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-th"></i><span>Mis Cursos</span>
@@ -60,8 +63,8 @@
                             <li><a href="">Font Awesome</a></li>
                         </ul>
                     </li>
-                @endif --}}
-                {{-- @if ( Auth::Usuario() )
+                @endif
+                @if ( Auth::Usuario() )
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-th"></i><span>Mis Cursos</span>

@@ -15,13 +15,13 @@
 
 
 
-Route::get('/', 'ControladorCursos@index');
-Route::get('login', function () {
-    return view('sesion.login');
-});
-Route::get('register', function () {
-    return view('sesion.register');
-});
+Route::get('/', 'ControladorCursos@index')->name('home');
+// Route::get('login', function () {
+//     return view('sesion.login');
+// });
+// Route::get('register', function () {
+//     return view('sesion.register');
+// });
 // Programador de Cursos
 //*Instructor
 Route::get('/evaluar-alumno','ControladorProgramador@evaluar_alumno');
@@ -34,15 +34,12 @@ Route::post('inscribir','ControladorCursos@inscribir')->name('inscribirse');
 // login
 Route::get('login','Auth\LoginController@mostrarFormLogin')->name('login');
 Route::post('login','Auth\LoginController@login');
-Route::post('logout','Auth\LoginController@logout')->name('logout');
+Route::post('logout','Auth\LoginController@logout')->name('cerrarSesion');
 //
 //registro
 Route::get('register','Auth\RegisterController@mostrarFormRegistro')->name('register');
 Route::post('register','Auth\RegisterController@registrarUsuario')->name('registrarUsuario');
 //
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 
-
-Route::get('/home', 'HomeController@index')->name('home');

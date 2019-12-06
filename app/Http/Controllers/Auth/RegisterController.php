@@ -65,22 +65,26 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Usuario
      */
-    protected function create(array $data)
-    {
-        return Usuario::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'provinencia' => $data['provinencia'],
-            'rol' => $data['rol'],
-            'expediente' => $data['expediente'],
-        ]);
-    }
-
+    // protected function create(array $data)
+    // {
+    //     return Usuario::create([
+    //         'name' => $data['name'],
+    //         'email' => $data['email'],
+    //         'password' => Hash::make($data['password']),
+    //         'provinencia' => $data['provinencia'],
+    //         'rol' => $data['rol'],
+    //         'expediente' => $data['expediente'],
+    //     ]);
+    // }
+    /**
+     * funcion que muestra el formulario de registro de cuenta de usuario
+     */
     public function mostrarFormRegistro(){
         return view('auth.register');
     }
-
+    /**
+     * Funcion que registra al usuario en la base de datos
+     */
     public function registrarUsuario(Request $request){
         $usuario = new Usuario();
         // dd($request->email, $request->expediente);
@@ -92,7 +96,7 @@ class RegisterController extends Controller
         $usuario->rol = 'alumno';
         $usuario->expediente = $request->expediente;
         $usuario->save();
-        return redirect('home');
+        return redirect('/login');
 
     }
     
