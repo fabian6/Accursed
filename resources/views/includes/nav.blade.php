@@ -11,8 +11,8 @@
     <div class="top-menu">
         <ul class="nav pull-right top-menu btn-group" style="margin-top: 12px;">
             @guest
-                <li><a class="btn" type="button" href="#"><i class="fa fa-sign-in"></i> Accede</a></li>
-                <li><a class="btn btn-theme" type="button" style="color: white;" href="#">Registrate</a></li>
+                <li><a class="btn" type="button" href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Accede</a></li>
+                <li><a class="btn btn-theme" type="button" style="color: white;" href="{{ route('register') }}">Registrate</a></li>
             @endguest
             
             @auth

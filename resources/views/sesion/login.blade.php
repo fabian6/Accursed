@@ -147,7 +147,7 @@
                             </div>
                         @endif
                         <h5 class="card-title text-center">Acceder</h5>
-                        <form method="POST" action="">
+                        <form method="POST" action="{ route('login') }">
                             @csrf
 
                             <div class="form-label-group">

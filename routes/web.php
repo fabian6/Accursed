@@ -20,11 +20,6 @@ Route::get('register','Auth\RegisterController@showRegistrationForm')->name('reg
 Route::post('register','Auth\RegisterController@register');
 
 
-Route::get('password/reset','Auth\FogotPasswordController@showLinkRequestForm')->name('password.request');
-Route::post('password/email','Auth\FogotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('password/reset/{token}','Auth\FogotPasswordController@showResetForm')->name('password.reset');
-Route::post('password/reset','Auth\FogotPasswordController@reset');
-
 Route::get('/', 'ControladorCursos@index');
 Route::get('login', function () {
     return view('sesion.login');
@@ -41,6 +36,10 @@ Route::get('/enviar-evaluacion-alumno','ControladorProgramador@enviar_evaluacion
 Route::resource('cursos','ControladorCursos');
 Route::post('inscribir','ControladorCursos@inscribir')->name('inscribirse');
 //
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

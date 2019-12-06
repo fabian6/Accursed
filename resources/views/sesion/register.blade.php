@@ -7,7 +7,7 @@
         --input-padding-y: .75rem;
         }
 
-        body {
+        body {   
         background: #007bff;
         background: linear-gradient(to right, #0062E6, #33AEFF);
         }
@@ -111,6 +111,7 @@
         color: #777;
         }
     </style>
+    */
     <title> Registrarse </title>
     <div class="container">
         <div class="row">
@@ -121,7 +122,7 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title text-center">{{ __('Regístrate') }}</h5>
-                        <form method="POST" action="">
+                        <form method="POST" action="{ route('register') }">
                             @csrf
                             <div class="form-group form-label-group">
                                 <input type="text" class="form-control" {{ $errors->has('nombre') ? 'has-error' : ''}} placeholder="Username" id="inputUserame"  name="nombre" value="{{ old('nombre') }}" required>
@@ -147,6 +148,14 @@
                                 <input type="password" class="form-control" placeholder="Password" id="inputConfirmPassword"  name="password_confirmation" required>
                                 <label for="inputConfirmPassword">{{ __('Confirmar Contraseña') }}</label>
                             </div>
+
+                            <div class="form-group form-label-group">
+                                <input type="text" class="form-control" {{ $errors->has('provinencia') ? 'has-error' : ''}} placeholder="Provinencia" name="provinencia" required>
+                                <label for="inputUserame">{{ __('Provinencia') }}</label>
+                                {!! $errors->first('provinencia','<span class="help-block" style="color:red;">:message</span>')!!}
+                            </div>
+
+                            
 
                             <button class="btn btn-lg btn-primary btn-block" type="submit">{{ __('Regístrate') }}</button>
                                 <a class="d-block text-center mt-2 small" href="">Ingresar</a>
