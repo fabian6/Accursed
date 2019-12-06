@@ -1,14 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+<br><br><br><br>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Registro') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('registrarUsuario') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -43,7 +44,7 @@
                             <label for="correo" class="col-md-4 col-form-label text-md-right">{{ __('Correo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="correo" type="correo" class="form-control @error('correo') is-invalid @enderror" name="correo" value="{{ old('correo') }}" required autocomplete="correo">
+                                <input  type="email" class="form-control @error('correo') is-invalid @enderror" name="email" value="{{ old('correo') }}" required autocomplete="correo">
 
                                 @error('correo')
                                     <span class="invalid-feedback" role="alert">
@@ -52,12 +53,28 @@
                                 @enderror
                             </div>
                         </div>
+                        
 
+                        <div class="form-group row">
+                            <label for="provinencia" class="col-md-4 col-form-label text-md-right">{{ __('Universidad de provinencia') }}</label>
+
+                            <div class="col-md-6">
+                                <input  type="text" class="form-control" name="provinencia" required >
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="expediente" class="col-md-4 col-form-label text-md-right">{{ __('Expediente (opcional)') }}</label>
+
+                            <div class="col-md-6">
+                                <input  type="text" class="form-control" name="expediente"  >
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="contraseña" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
 
                             <div class="col-md-6">
-                                <input id="contraseña" type="contraseña" class="form-control @error('contraseña') is-invalid @enderror" name="contraseña" required autocomplete="new-password">
+                                <input id="contraseña" type="password" class="form-control @error('contraseña') is-invalid @enderror" name="password" required >
 
                                 @error('contraseña')
                                     <span class="invalid-feedback" role="alert">
@@ -67,13 +84,13 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -88,4 +105,5 @@
         </div>
     </div>
 </div>
+
 @endsection

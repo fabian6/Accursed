@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Illuminate\Http\Request;
+use App\Usuario;
 class RegisterController extends Controller
 {
     /*
@@ -75,4 +76,24 @@ class RegisterController extends Controller
             'expediente' => $data['expediente'],
         ]);
     }
+
+    public function mostrarFormRegistro(){
+        return view('auth.register');
+    }
+
+    public function registrarUsuario(Request $request){
+        $usuario = new Usuario();
+        // dd($request->email, $request->expediente);
+        $usuario->nombre = $request->nombre;
+        $usuario->apellido= $request->apellido;
+        $usuario->email = $request->email;
+        $usuario->provinencia= $request->provinencia;
+        $usuario->password = bcrypt(request('password'));
+        $usuario->rol = 'alumno';
+        $usuario->expediente = $request->expediente;
+        $usuario->save();
+        return redirect('home');
+
+    }
+    
 }

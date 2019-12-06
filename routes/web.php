@@ -11,13 +11,8 @@
 |
 */
 
-Route::get('login','Auth\LoginController@showLoginForm')->name('login');
-Route::post('login','Auth\LoginController@login');
-Route::post('logout','Auth\LoginController@logout')->name('logout');
 
 
-Route::get('register','Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register','Auth\RegisterController@register');
 
 
 Route::get('/', 'ControladorCursos@index');
@@ -36,10 +31,18 @@ Route::get('/enviar-evaluacion-alumno','ControladorProgramador@enviar_evaluacion
 Route::resource('cursos','ControladorCursos');
 Route::post('inscribir','ControladorCursos@inscribir')->name('inscribirse');
 //
-Auth::routes();
+// login
+Route::get('login','Auth\LoginController@mostrarFormLogin')->name('login');
+Route::post('login','Auth\LoginController@login');
+Route::post('logout','Auth\LoginController@logout')->name('logout');
+//
+//registro
+Route::get('register','Auth\RegisterController@mostrarFormRegistro')->name('register');
+Route::post('register','Auth\RegisterController@registrarUsuario')->name('registrarUsuario');
+//
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');

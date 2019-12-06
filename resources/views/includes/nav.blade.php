@@ -16,7 +16,7 @@
             @endguest
             
             @auth
-                <button class="btn btn-theme dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> {nombre} <span class="caret"></span></button>
+                <button class="btn btn-theme dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> {{auth()->user()->nombre}} <span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu">
                     <li>Rol: </li>
                     <li class="divider"></li>
@@ -36,7 +36,7 @@
         <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
-                @if ( Auth::ProgramadorCurso()->rol != "instructor" )
+                {{-- @if ( Auth::ProgramadorCurso()->rol != "instructor" )
                     <li class="mt">
                         <a class="active" href="#">
                             <i class="fa fa-plus-square-o"></i><span>Crear Nuevo curso</span>
@@ -60,8 +60,8 @@
                             <li><a href="">Font Awesome</a></li>
                         </ul>
                     </li>
-                @endif
-                @if ( Auth::Usuario() )
+                @endif --}}
+                {{-- @if ( Auth::Usuario() )
                     <li class="sub-menu">
                         <a href="javascript:;">
                             <i class="fa fa-th"></i><span>Mis Cursos</span>
@@ -73,7 +73,7 @@
                             <li><a href="">Font Awesome</a></li>
                         </ul>
                     </li>
-                @endif
+                @endif --}}
 
             </ul>
             <!-- sidebar menu end-->
