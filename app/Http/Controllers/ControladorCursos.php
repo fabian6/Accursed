@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Curso;
+use App\Usuario;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -15,10 +16,18 @@ class ControladorCursos extends Controller
     public function index()
     {
         $cursos = Curso::all();
-        
+
         if(Auth::user()){
-            $cursosDelUsuario= Auth::user()->cursos;
-            return view('welcome', compact('cursos','cursosDelUsuario'));
+            /**
+             * Query para obtener los cursos que no este inscrito el usuario actualmente autenticado, para asi
+             * mandarlos a la vista de inicio y no pueda inscribirse dos veces al mismo curso
+             */
+            $cursosNoinscritos= Curso::whereDoesntHave('usuarios.cursos', function ($query) {
+                $usuario= Auth::user();
+                $query->where('usuario_id',$usuario->id );
+            })->get();
+            // dd($cursosNoinscritos);
+            return view('welcome', compact('cursosNoinscritos'));
         }else{
             return view('welcome',compact('cursos'));
         }
