@@ -1,28 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Curso;
-use Auth;
-use Illuminate\Http\Request;
 
-class ControladorCursos extends Controller
+use Illuminate\Http\Request;
+use App\Curso;
+use App\Usuario;
+use Auth;
+class ControladorUsuario extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function listaCursosInscrito()
     {
-        $cursos = Curso::all();
-        
-        if(Auth::user()){
-            $cursosDelUsuario= Auth::user()->cursos;
-            return view('welcome', compact('cursos','cursosDelUsuario'));
-        }else{
-            return view('welcome',compact('cursos'));
-        }
-       
+        $usuario= Auth::user();
+        // dd($usuario->cursos);
+        $cursos= $usuario->cursos;
+        return view('alumnos.verCursosInscrito',compact('cursos'));
     }
 
     /**
@@ -67,7 +63,6 @@ class ControladorCursos extends Controller
     {
         //
     }
-   
 
     /**
      * Update the specified resource in storage.
@@ -81,8 +76,19 @@ class ControladorCursos extends Controller
         //
     }
 
-     
-    
+    /**
+     * Metodo que se encarga de relacionar a un usuario con un curso de actualizacion
+     */
+    public function inscribirCurso(Request $request){
+        
+        $usuario= Usuario::findOrFail(auth()->user()->id);
+        $idCurso = $request->idCurso;
+        $curso= Curso::findOrFail($idCurso);
+        $usuario->cursos()->attach($curso);
+        return redirect('tus-cursos');
+
+    }
+
     /**
      * Remove the specified resource from storage.
      *

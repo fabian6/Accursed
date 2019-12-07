@@ -76,6 +76,7 @@ class RegisterController extends Controller
     //         'expediente' => $data['expediente'],
     //     ]);
     // }
+    
     /**
      * funcion que muestra el formulario de registro de cuenta de usuario
      */

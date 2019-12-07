@@ -14,15 +14,10 @@
 
 
 
-
+//vista de inicio
 Route::get('/', 'ControladorCursos@index')->name('home');
-// Route::get('login', function () {
-//     return view('sesion.login');
-// });
-// Route::get('register', function () {
-//     return view('sesion.register');
-// });
-// Programador de Cursos
+//
+
 //*Instructor
 Route::get('/evaluar-alumno','ControladorProgramador@evaluar_alumno');
 Route::get('/enviar-evaluacion-alumno','ControladorProgramador@enviar_evaluacion_alumno');
@@ -41,5 +36,6 @@ Route::get('register','Auth\RegisterController@mostrarFormRegistro')->name('regi
 Route::post('register','Auth\RegisterController@registrarUsuario')->name('registrarUsuario');
 //
 
-
-
+// Registrar usuario a un curso
+Route::post('registrarAcurso','ControladorUsuario@inscribirCurso')->name('inscribirCurso')->middleware('auth');
+Route::get('tus-cursos', 'ControladorUsuario@listaCursosInscrito')->name('cursosInscrito');

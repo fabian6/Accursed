@@ -39,6 +39,11 @@
         <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
+                    <li class="mt">
+                            <a class="active" href="{{route('cursosInscrito')}}">
+                                <i class="fa fa-plus-square-o"></i><span>Cursos inscrito</span>
+                            </a>
+                        </li>
                 {{-- @if ( Auth::ProgramadorCurso()->rol != "instructor" )
                     <li class="mt">
                         <a class="active" href="#">

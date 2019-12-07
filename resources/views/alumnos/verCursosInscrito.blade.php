@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
   <br><br><br>
-  <h2>Cursos de actualización</h2>
+  <h2>Cursos inscrito</h2>
   {{-- @php
       dd($cursos);
   @endphp        --}}
@@ -34,23 +34,20 @@
         <td>{{$curso->fecha_inicio}}</td>
         {{-- <td>{{$curso->fecha_final}}</td> --}}
         <td>
-          <form action="{{route('inscribirCurso')}}" method="POST">
+          {{-- <form action="{{route('inscribirCurso')}}" method="POST">
             @csrf
-            @auth
-              <input type="hidden" value="{{auth()->user()->id}} " name="idUsuario">
-              <input type="hidden" value="{{$curso->id}}" name = "idCurso">
-            @endauth
-            
+            <input type="hidden" value="{{auth()->user()->id}} " name="idUsuario">
+            <input type="hidden" value="{{$curso->id}}" name = "idCurso">
             <button type="submit" class="btn btn-success btn-sm"
-                onclick="return confirm('¿Deseas inscribirte a {{$curso->nombre}}  ?')" >
+                onclick="return confirm('todavia no esta listo este boton, brga')" >
                 Inscribirse <span class="fa fa-pencil-square-o"></span>
             </button></td>
-          </form>
+          </form> --}}
          
         </tr>
       @endforeach
     @else
-        <p>No hay cursos de actualización disponibles</p>
+        <p>No te haz inscrito a ningún cursos de actualización</p>
     @endif
       
     </tbody>
