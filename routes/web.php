@@ -38,11 +38,15 @@ Route::post('register','Auth\RegisterController@registrarUsuario')->name('regist
 
 // Registrar usuario a un curso
 Route::post('registrarAcurso','ControladorUsuario@inscribirCurso')->name('inscribirCurso')->middleware('auth');
-Route::get('tus-cursos', 'ControladorUsuario@listaCursosInscrito')->name('cursosInscrito');
+Route::get('tus-cursos', 'ControladorUsuario@listaCursosInscrito')->name('cursosInscrito')->middleware('auth');
 //
 
 //Evaluar el curso del cual el usuario se inscribio
-Route::get('evaluar-curso','ControladorUsuario@mostrarFormEvaluar')->name('mostrarFormEvaluar');
-Route::post('evaluar-curso','ControladorUsuario@evaluarCurso')->name('evaluarCurso');
+Route::get('evaluar-curso','ControladorUsuario@mostrarFormEvaluar')->name('mostrarFormEvaluar')->middleware('auth');
+Route::post('evaluar-curso','ControladorUsuario@evaluarCurso')->name('evaluarCurso')->middleware('auth');
 // Route::get('cursos-a-evaluar','ControladorCursos@cursosAevaluar')->name('listaCursosEvaluar');
 //
+
+//Evaluar encargado del curso de actualizacion al cual el usuario se inscribio
+Route::get('evaluar-encargado','ControladorUsuario@mostrarEvaluarEncargado')->name('mostrarEvaluarEncargado')->middleware('auth');
+Route::post('evaluar-encargado','ControladorUsuario@evaluarEncargado')->name('evaluarEncargado')->middleware('auth');

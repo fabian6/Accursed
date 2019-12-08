@@ -40,6 +40,24 @@ class ControladorUsuario extends Controller
         return redirect('tus-cursos');
     }
     /**
+     * 
+     */
+    public function mostrarEvaluarEncargado(Request $request){
+        $curso= Curso::findOrFail($request->idCurso);
+        $programadores= $curso->programadores;
+        return view('programadorCursos.evaluarEncargado',compact('programadores','curso'));
+    }
+
+    /**
+     * 
+     */
+    public function evaluarEncargado(Request $request){
+        $curso= Curso::findOrFail($request->idCurso);
+        Auth::user()->cursos()->updateExistingPivot($curso->id,['encargado_evaluado'=>1]);
+
+        return redirect('tus-cursos');
+    }
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

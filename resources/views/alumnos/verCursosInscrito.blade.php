@@ -18,8 +18,8 @@
         <th>Horario</th>
         <th>Duración</th>
         <th>Fecha de inicio</th>
-        <th></th>
-        <th></th>
+        <th>Evaluar curso</th>
+        <th>Evaluar instructor</th>
         {{-- <th>Fecha a concluir</th> --}}
         
       </tr>
@@ -57,10 +57,10 @@
         <td>
           @if ($curso->estado == 'Concluido'  )
             @if($curso->pivot->encargado_evaluado=='0')
-              <form action="{{route('mostrarFormEvaluar')}}" method="GET">
+              <form action="{{route('mostrarEvaluarEncargado')}}" method="GET">
                   <button type="submit" class="btn btn-success btn-sm"  >
                       <input type="hidden" value={{$curso->id}} name='idCurso'>
-                      Evaluar curso de actualización <span class=""></span>
+                      Evaluar encargado <span class=""></span>
                     </button>
               </form>
               @else

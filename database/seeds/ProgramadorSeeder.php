@@ -17,7 +17,7 @@ class ProgramadorSeeder extends Seeder
              'expediente'                  => 215284293,
             'email'                     => 'mireles@gmail.com',
             'password'                     => 'hehexd',
-            'rol'                     => 'instructor',
+            // 'rol'                     => 'instructor',
             
             
         ]);
@@ -27,7 +27,7 @@ class ProgramadorSeeder extends Seeder
              'expediente'                  => 215284293,
             'email'                     => 'roberto@gmail.com',
             'password'                     => 'hehexd',
-            'rol'                     => 'instructor',
+            // 'rol'                     => 'instructor',
             
             
         ]);
@@ -37,7 +37,7 @@ class ProgramadorSeeder extends Seeder
              'expediente'                  => 215284293,
             'email'                     => 'waissman@gmail.com',
             'password'                     => 'hehexd',
-            'rol'                     => 'instructor',
+            // 'rol'                     => 'instructor',
             
             
         ]);
