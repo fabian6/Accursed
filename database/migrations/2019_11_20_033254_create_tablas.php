@@ -38,7 +38,7 @@ class CreateTablas extends Migration
             $table->string('expediente')->nullable();
             $table->string('email');
             $table->string('password');
-            // $table->enum('rol',['instructor','responsable','ambos']);
+            $table->enum('rol',['instructor','responsable','ambos']);
             $table->timestamps();
         });
 
@@ -103,7 +103,7 @@ class CreateTablas extends Migration
             $table->increments('id');
             $table->integer('curso_id')->nullable()->unsigned();
             $table->integer('programador_curso_id')->nullable()->unsigned();
-            $table->enum('rol',['instructor','responsable','ambos']);
+            
             
             
         });

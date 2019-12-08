@@ -21,7 +21,7 @@ class Curso extends Model
     }
 
     public function programadores(){
-        return $this->belongsToMany('App\ProgramadorCurso','cursos_programadores')->withPivot(['rol']);
+        return $this->belongsToMany('App\ProgramadorCurso','cursos_programadores');
     }
 
     public function modulos(){

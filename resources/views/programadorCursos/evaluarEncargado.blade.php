@@ -6,7 +6,7 @@
         
         @foreach ($programadores as $programador)
             
-            @if ($programador->pivot->rol == 'instructor' || $programador->pivot->rol=='ambos')
+            @if ($programador->rol == 'instructor' || $programador->rol=='ambos')
                 <br><br><br><br><br><br>
         
                 <h1>Encargado del curso:{{$programador->nombre}} {{$programador->apellido}} </h1>

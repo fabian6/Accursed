@@ -15,6 +15,6 @@ class ProgramadorCurso extends Authenticatable
     public $timestamps = false;
 
     public function cursos(){
-        return $this->belongsToMany('App\Curso','cursos_programadores')->withPivot(['rol']);
+        return $this->belongsToMany('App\Curso','cursos_programadores');
     }
 }
