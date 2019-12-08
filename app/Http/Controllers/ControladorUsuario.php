@@ -18,9 +18,45 @@ class ControladorUsuario extends Controller
         $usuario= Auth::user();
         // dd($usuario->cursos);
         $cursos= $usuario->cursos;
+        
         return view('alumnos.verCursosInscrito',compact('cursos'));
     }
 
+    /**
+     * Funcion que se encarga de mostrar el formulario para el curso ha evaluar
+     */
+    public function mostrarFormEvaluar(Request $request){
+        $curso = Curso::findOrFail($request->idCurso);
+        return view('cursos.evaluarCurso', compact('curso'));
+    }
+    /**
+     * 
+     */
+    public function evaluarCurso(Request $request){
+        $curso=Curso::findOrFail($request->idCurso);
+        Auth::user()->cursos()->updateExistingPivot($curso->id,['curso_evaluado'=>1]);
+        
+        
+        return redirect('tus-cursos');
+    }
+    /**
+     * 
+     */
+    public function mostrarEvaluarEncargado(Request $request){
+        $curso= Curso::findOrFail($request->idCurso);
+        $programadores= $curso->programadores;
+        return view('programadorCursos.evaluarEncargado',compact('programadores','curso'));
+    }
+
+    /**
+     * 
+     */
+    public function evaluarEncargado(Request $request){
+        $curso= Curso::findOrFail($request->idCurso);
+        Auth::user()->cursos()->updateExistingPivot($curso->id,['encargado_evaluado'=>1]);
+
+        return redirect('tus-cursos');
+    }
     /**
      * Show the form for creating a new resource.
      *

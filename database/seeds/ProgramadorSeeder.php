@@ -12,12 +12,32 @@ class ProgramadorSeeder extends Seeder
     public function run()
     {
         DB::table('programadores_del_curso')->insert([
-            'nombre'                    => 'jesus angel',
-            'apellido'                  => 'carmona',
+            'nombre'                    => 'Alberto',
+            'apellido'                  => 'Mireles',
              'expediente'                  => 215284293,
-            'email'                     => 'carmona@gmail.com',
+            'email'                     => 'mireles@gmail.com',
             'password'                     => 'hehexd',
-            'rol'                     => 'instructor',
+            // 'rol'                     => 'instructor',
+            
+            
+        ]);
+        DB::table('programadores_del_curso')->insert([
+            'nombre'                    => 'Roberto',
+            'apellido'                  => 'Nuñez',
+             'expediente'                  => 215284293,
+            'email'                     => 'roberto@gmail.com',
+            'password'                     => 'hehexd',
+            // 'rol'                     => 'instructor',
+            
+            
+        ]);
+        DB::table('programadores_del_curso')->insert([
+            'nombre'                    => 'Julio',
+            'apellido'                  => 'Waissman',
+             'expediente'                  => 215284293,
+            'email'                     => 'waissman@gmail.com',
+            'password'                     => 'hehexd',
+            // 'rol'                     => 'instructor',
             
             
         ]);

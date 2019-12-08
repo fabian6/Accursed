@@ -44,3 +44,15 @@ Route::get('tus-cursos', 'ControladorUsuario@listaCursosInscrito')->name('cursos
 Route::get('administrar-registros','Auth\RegisterController@mostrarFormRegistroAdmin')->name('administrar-registros');
 Route::post('administrar-registros','Auth\RegisterController@administrarProgramador')->name('administrarRegistros');
 Route::post('administrar-registros-DD','Auth\RegisterController@administrarDivisionalyDirector')->name('administrarRegistrosDD');
+Route::get('tus-cursos', 'ControladorUsuario@listaCursosInscrito')->name('cursosInscrito')->middleware('auth');
+//
+
+//Evaluar el curso del cual el usuario se inscribio
+Route::get('evaluar-curso','ControladorUsuario@mostrarFormEvaluar')->name('mostrarFormEvaluar')->middleware('auth');
+Route::post('evaluar-curso','ControladorUsuario@evaluarCurso')->name('evaluarCurso')->middleware('auth');
+// Route::get('cursos-a-evaluar','ControladorCursos@cursosAevaluar')->name('listaCursosEvaluar');
+//
+
+//Evaluar encargado del curso de actualizacion al cual el usuario se inscribio
+Route::get('evaluar-encargado','ControladorUsuario@mostrarEvaluarEncargado')->name('mostrarEvaluarEncargado')->middleware('auth');
+Route::post('evaluar-encargado','ControladorUsuario@evaluarEncargado')->name('evaluarEncargado')->middleware('auth');

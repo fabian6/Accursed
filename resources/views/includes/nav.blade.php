@@ -60,9 +60,10 @@
             <ul class="sidebar-menu" id="nav-accordion">
                     <li class="mt">
                             <a class="active" href="{{route('cursosInscrito')}}">
-                                <i class="fa fa-plus-square-o"></i><span>Cursos inscrito</span>
+                                <i class="fa fa-plus-square-o"></i><span>Tus cursos</span>
                             </a>
                         </li>
+                    
                 {{-- @if ( Auth::ProgramadorCurso()->rol != "instructor" )
                     <li class="mt">
                         <a class="active" href="#">

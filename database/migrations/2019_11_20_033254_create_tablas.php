@@ -52,7 +52,7 @@ class CreateTablas extends Migration
             $table->string('fecha_final');
             $table->string('horario');
             $table->string('aula');
-            $table->enum('estado',['Aprobado','Concluido','Pendiente','No concluido']);
+            $table->enum('estado',['Aprobado','Concluido','Pendiente']);
             $table->boolean('exclusivo')->default(false);
             $table->timestamps();
         });
@@ -83,6 +83,8 @@ class CreateTablas extends Migration
             $table->integer('curso_id')->nullable()->unsigned();
             $table->integer('usuario_id')->nullable()->unsigned();
             $table->boolean('aprobado')->default(0);
+            $table->boolean('curso_evaluado')->default(0);
+            $table->boolean('encargado_evaluado')->default(0);
             
         });
 
@@ -101,6 +103,8 @@ class CreateTablas extends Migration
             $table->increments('id');
             $table->integer('curso_id')->nullable()->unsigned();
             $table->integer('programador_curso_id')->nullable()->unsigned();
+            
+            
             
         });
         /**

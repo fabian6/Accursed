@@ -21,6 +21,6 @@ class Usuario  extends Authenticatable
      * 
      */
     public function cursos(){
-        return $this->belongsToMany('App\Curso','cursos_usuarios')->withPivot(['aprobado']);
+        return $this->belongsToMany('App\Curso','cursos_usuarios')->withPivot(['aprobado','curso_evaluado','encargado_evaluado']);
     }
 }
