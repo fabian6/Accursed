@@ -39,3 +39,8 @@ Route::post('register','Auth\RegisterController@registrarUsuario')->name('regist
 // Registrar usuario a un curso
 Route::post('registrarAcurso','ControladorUsuario@inscribirCurso')->name('inscribirCurso')->middleware('auth');
 Route::get('tus-cursos', 'ControladorUsuario@listaCursosInscrito')->name('cursosInscrito');
+
+// *Administrador
+Route::get('administrar-registros','Auth\RegisterController@mostrarFormRegistroAdmin')->name('administrar-registros');
+Route::post('administrar-registros','Auth\RegisterController@administrarProgramador')->name('administrarRegistros');
+Route::post('administrar-registros-DD','Auth\RegisterController@administrarDivisionalyDirector')->name('administrarRegistrosDD');

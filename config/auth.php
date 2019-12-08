@@ -39,13 +39,13 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'usuario',
-            // 'provider' => 'programador',
+             'provider' => 'programador',
         ],
 
         'api' => [
             'driver' => 'token',
             'provider' => 'usuario',
-            // 'provider' => 'programador',
+            'provider' => 'programador',
             'hash' => false,
         ],
     ],
@@ -72,10 +72,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Usuario::class,
         ],
-        // 'programador' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\ProgramadorCurso::class,
-        // ],
+        'programador' => [
+            'driver' => 'eloquent',
+            'model' => App\ProgramadorCurso::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',

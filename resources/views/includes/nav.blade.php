@@ -18,11 +18,30 @@
             @auth
                 <button class="btn btn-theme dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> {{auth()->user()->nombre}} <span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu">
-                    <li>Rol: </li>
+                    <li> <b> Rol: 
+                        @if (auth()->user()->rol == 'ambos' || auth()->user()->rol == 'responsable')
+                            Responsable
+                        @endif
+                        @if (auth()->user()->rol == 'instructor')
+                            Instructor
+                        @endif
+                        @if (auth()->user()->rol == 'consejo')
+                            Consejero Divisional
+                        @endif
+                        @if (auth()->user()->rol == 'director')
+                            Director de Division
+                        @endif
+                        @if (auth()->user()->rol == 'alumno' && auth()->user()->admin == 0)
+                            Alumno
+                        @endif
+                        @if (auth()->user()->admin && auth()->user()->admin == 1)
+                            Administrador
+                        @endif
+                    </b> </li>
                     <li class="divider"></li>
                     <form id = 'cerrarSesionForm' action="{{ route('cerrarSesion') }}" method="POST">
                         @csrf
-                        <li onclick="cerrarSesionForm.submit();" >Cerrar sesión</button>
+                        <a class="btn btn-default btn-block" onclick="cerrarSesionForm.submit();" > <i class="fa fa-power-off"></i> Cerrar sesión</a>
                     </form>
                 </ul>
             @endauth
