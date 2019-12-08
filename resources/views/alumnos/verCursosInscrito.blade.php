@@ -54,6 +54,24 @@
           
           @endif
         </td>
+        <td>
+          @if ($curso->estado == 'Concluido'  )
+            @if($curso->pivot->encargado_evaluado=='0')
+              <form action="{{route('mostrarFormEvaluar')}}" method="GET">
+                  <button type="submit" class="btn btn-success btn-sm"  >
+                      <input type="hidden" value={{$curso->id}} name='idCurso'>
+                      Evaluar curso de actualización <span class=""></span>
+                    </button>
+              </form>
+              @else
+                  <p>Encargado del curso evaluado</p>
+            @endif
+              
+          @else
+              <p>El curso no ha concluido.</p>        
+          
+          @endif
+        </td>
         </tr>
        
       @endforeach

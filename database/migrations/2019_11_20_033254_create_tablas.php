@@ -84,6 +84,7 @@ class CreateTablas extends Migration
             $table->integer('usuario_id')->nullable()->unsigned();
             $table->boolean('aprobado')->default(0);
             $table->boolean('curso_evaluado')->default(0);
+            $table->boolean('encargado_evaluado')->default(0);
             
         });
 
