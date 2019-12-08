@@ -39,3 +39,10 @@ Route::post('register','Auth\RegisterController@registrarUsuario')->name('regist
 // Registrar usuario a un curso
 Route::post('registrarAcurso','ControladorUsuario@inscribirCurso')->name('inscribirCurso')->middleware('auth');
 Route::get('tus-cursos', 'ControladorUsuario@listaCursosInscrito')->name('cursosInscrito');
+//
+
+//Evaluar el curso del cual el usuario se inscribio
+Route::get('evaluar-curso','ControladorUsuario@mostrarFormEvaluar')->name('mostrarFormEvaluar');
+Route::post('evaluar-curso','ControladorUsuario@evaluarCurso')->name('evaluarCurso');
+// Route::get('cursos-a-evaluar','ControladorCursos@cursosAevaluar')->name('listaCursosEvaluar');
+//

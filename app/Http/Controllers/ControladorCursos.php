@@ -35,6 +35,20 @@ class ControladorCursos extends Controller
     }
 
     /**
+     * Funcion que se encarga de mostrar los cursos a evaluar.
+     */
+    public function cursosAevaluar(){
+        $usuario= Auth::user();
+        //forma de acceder a la tabla pivote
+            // foreach ($usuario->cursos as $curso) {
+            //     echo $curso->pivot->curso_evaluado;
+            // }
+        
+        return view('cursos.verCursosAevaluar');
+        
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

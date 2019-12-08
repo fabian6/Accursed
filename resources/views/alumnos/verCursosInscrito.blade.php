@@ -16,14 +16,18 @@
         <th>Cupo disponible</th>
         <th>Aula</th>
         <th>Horario</th>
-        <th>duración</th>
+        <th>Duración</th>
         <th>Fecha de inicio</th>
-        {{-- <th>Fecha a concluir</th> --}}
         <th></th>
+        <th></th>
+        {{-- <th>Fecha a concluir</th> --}}
+        
       </tr>
     </thead>
+    
     <tbody>
       @foreach ($cursos as $curso)
+      
         <tr>
         <td>{{$curso->nombre}}</td>
         <td>{{$curso->descripcion}}</td>
@@ -32,20 +36,28 @@
         <td>{{$curso->horario}}</td>
         <td>{{$curso->duracion}}</td>
         <td>{{$curso->fecha_inicio}}</td>
-        {{-- <td>{{$curso->fecha_final}}</td> --}}
         <td>
-          {{-- <form action="{{route('inscribirCurso')}}" method="POST">
-            @csrf
-            <input type="hidden" value="{{auth()->user()->id}} " name="idUsuario">
-            <input type="hidden" value="{{$curso->id}}" name = "idCurso">
-            <button type="submit" class="btn btn-success btn-sm"
-                onclick="return confirm('todavia no esta listo este boton, brga')" >
-                Inscribirse <span class="fa fa-pencil-square-o"></span>
-            </button></td>
-          </form> --}}
-         
+          @if ($curso->estado == 'Concluido'  )
+            @if($curso->pivot->curso_evaluado=='0')
+              <form action="{{route('mostrarFormEvaluar')}}" method="GET">
+                  <button type="submit" class="btn btn-success btn-sm"  >
+                      <input type="hidden" value={{$curso->id}} name='idCurso'>
+                      Evaluar curso de actualización <span class=""></span>
+                    </button>
+              </form>
+              @else
+                  <p>Curso evaluado</p>
+            @endif
+              
+          @else
+              <p>El curso no ha concluido.</p>        
+          
+          @endif
+        </td>
         </tr>
+       
       @endforeach
+
     @else
         <p>No te haz inscrito a ningún cursos de actualización</p>
     @endif
