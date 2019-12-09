@@ -16,7 +16,10 @@
 
 //vista de inicio
 Route::get('/', 'ControladorCursos@index')->name('home');
-//
+
+//Responsable del curso
+Route::get('/crear-curso','ControladorProgramador@crear_curso')->name('crear_curso');
+Route::post('/crear-curso', 'ControladorProgramador@programadorCrearCurso')->name('crearcurso');
 
 //*Instructor
 Route::get('/evaluar-alumno','ControladorProgramador@evaluar_alumno');
