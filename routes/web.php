@@ -22,8 +22,9 @@ Route::get('/crear-curso','ControladorProgramador@crear_curso')->name('crear_cur
 Route::post('/crear-curso', 'ControladorProgramador@programadorCrearCurso')->name('crearcurso');
 
 //*Instructor
+Route::get('/instructor-cursos','ControladorProgramador@instructor_cursos')->name('instructor-cursos');
 Route::get('/evaluar-alumno','ControladorProgramador@evaluar_alumno')->name('evaluar-alumno');
-Route::get('/enviar-evaluacion-alumno','ControladorProgramador@enviar_evaluacion_alumno');
+Route::get('enviar-evaluacion-alumno','ControladorProgramador@enviar_evaluacion_alumno')->name('enviar-evaluacion-alumno');
 
 // CURSOS DE ACTUALIZACION
 Route::resource('cursos','ControladorCursos');
@@ -67,3 +68,4 @@ Route::post('loginPro','Auth\LoginProController@loginPro')->name('loginPro.submi
 // Aprobar curso pendiente (consejo divisional)
 Route::get('evaluar-curso', 'ControladorUsuario@evaluarCursoConsejo')->name('evaluarCursoConsejo')->middleware('auth');
 Route::post('evaluar-curso', 'ControladorUsuario@guardarEvaluacionConsejo')->name('guardarEvaluacionConsejo')->middleware('auth');
+Route::post('logoutPro','Auth\LoginProController@logoutPro')->name('logoutPro');

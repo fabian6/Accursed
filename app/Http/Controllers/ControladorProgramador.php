@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Auth;
 
 class ControladorProgramador extends Controller{
 
@@ -15,29 +16,43 @@ class ControladorProgramador extends Controller{
         $this->middleware('auth:programador');
     }
 
-    // protected function validator(array $data)
-    // {
-    //     return Validator::make($data, [
-    //         'name' => ['required', 'string', 'max:255'],
-    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:usuarios'],
-    //         'password' => ['required', 'string', 'min:8', 'confirmed'],
-    //         'provinencia' => ['required', 'string', 'max:255'],
-    //         'rol' => ['required','enum'],
-    //         'expediente' => ['required', 'integer', 'max:10'],
-    //     ]);
-    // }
-
-    public function evaluar_alumno(){
-        return view('programadorCursos.instructor_evaluarAlumno');
+    public function instructor_cursos(){
+        $cursos = Curso::all();
+        $cursosProgramador = Curso::whereHas('programadores.cursos', function ($query) {
+            $programador = Auth::user();
+            $query->where('programador_curso_id',$programador->id );
+        })->get();
+        return view('programadorCursos.instructor_cursos', compact('cursosProgramador'));
     }
 
-    public function enviar_evaluacion_alumno(){
-        return view('programadorCursos.instructor_enviarEvaluacionAlumno');
+    public function evaluar_alumno(){
+        $cursos = Curso::all();
+        $cursosProgramador = Curso::whereHas('programadores.cursos', function ($query) {
+            $programador = Auth::user();
+            $query->where('programador_curso_id',$programador->id );
+        })->get();
+        return view('programadorCursos.instructor_evaluarAlumno',compact('cursosProgramador'));
+    }
+
+    public function enviar_evaluacion_alumno(Request $request){
+        //$cursol = Curso::find($id);
+        //dd($cursol->usuarios);
+        $curso = Curso::find($request->curso);
+        //dd($curso);
+        $cursosProgramador = Curso::whereHas('programadores.cursos', function ($query) {
+            $programador = Auth::user();
+            $query->where('programador_curso_id',$programador->id );
+        })->get();
+        return view('programadorCursos.instructor_enviarEvaluacionAlumno',compact('cursosProgramador','curso'));
     }
 
     // Responsable del curso
     public function crear_curso(){
-        return view('programadorCursos.responsable_crearCurso');
+        $cursosProgramador = Curso::whereHas('programadores.cursos', function ($query) {
+            $programador = Auth::user();
+            $query->where('programador_curso_id',$programador->id );
+        })->get();
+        return view('programadorCursos.responsable_crearCurso',compact('cursosProgramador'));
     }
 
     public function programadorCrearCurso(Request $request){
@@ -53,7 +68,7 @@ class ControladorProgramador extends Controller{
         $curso->estado = "pendiente";
         //$curso->exclusivo = $request->exclusivo;
         $curso->save();
-        return redirect('/login');
+        return redirect('instructor-cursos');
     }
 
 

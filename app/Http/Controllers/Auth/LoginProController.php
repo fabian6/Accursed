@@ -36,7 +36,7 @@ class LoginProController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:programador')->except('logout');
+        $this->middleware('guest:programador')->except('logoutPro');
     }
 
     public function logout(){
@@ -55,8 +55,13 @@ class LoginProController extends Controller
         ]);
 
         if(Auth::guard('programador')->attempt($credentials, $request->remember)){
-            return redirect()->intended(route('evaluar-alumno'));
+            return redirect()->intended(route('instructor-cursos'));
         }
         return redirect()->back()->withInput($request->only('email','remember'));
+    }
+
+    public function logoutPro(){
+        Auth::guard('programador')->logout();
+        return redirect('loginPro');
     }
 }
