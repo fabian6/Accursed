@@ -43,9 +43,9 @@
                         
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                            <div class="col-md-10 offset-md-4">
+                                <button type="submit" class="btn btn-primary" style="position: relative;left: 100%;">
+                                    {{ __('Iniciar sesión') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
