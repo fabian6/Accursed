@@ -18,7 +18,7 @@
 Route::get('/', 'ControladorCursos@index')->name('home');
 
 //Responsable del curso
-Route::get('/crear-curso','ControladorProgramador@crear_curso')->name('crear_curso');
+Route::get('/crear-curso', 'ControladorProgramador@crear_curso')->name('crear_curso');
 Route::post('/crear-curso', 'ControladorProgramador@programadorCrearCurso')->name('crearcurso');
 
 //*Instructor
@@ -29,21 +29,21 @@ Route::post('guardar_evaluacion_alumno','ControladorProgramador@guardar_evaluaci
 Route::post('guardar_curso_concluido','ControladorProgramador@guardar_curso_concluido')->name('guardar_curso_concluido');
 
 // CURSOS DE ACTUALIZACION
-Route::resource('cursos','ControladorCursos');
-Route::post('inscribir','ControladorCursos@inscribir')->name('inscribirse');
+Route::resource('cursos', 'ControladorCursos');
+Route::post('inscribir', 'ControladorCursos@inscribir')->name('inscribirse');
 //
 // login
-Route::get('login','Auth\LoginController@mostrarFormLogin')->name('login');
-Route::post('login','Auth\LoginController@login');
-Route::post('logout','Auth\LoginController@logout')->name('cerrarSesion');
+Route::get('login', 'Auth\LoginController@mostrarFormLogin')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('cerrarSesion');
 //
 //registro
-Route::get('register','Auth\RegisterController@mostrarFormRegistro')->name('register');
-Route::post('register','Auth\RegisterController@registrarUsuario')->name('registrarUsuario');
+Route::get('register', 'Auth\RegisterController@mostrarFormRegistro')->name('register');
+Route::post('register', 'Auth\RegisterController@registrarUsuario')->name('registrarUsuario');
 //
 
 // Registrar usuario a un curso
-Route::post('registrarAcurso','ControladorUsuario@inscribirCurso')->name('inscribirCurso')->middleware('auth');
+Route::post('registrarAcurso', 'ControladorUsuario@inscribirCurso')->name('inscribirCurso')->middleware('auth');
 Route::get('tus-cursos', 'ControladorUsuario@listaCursosInscrito')->name('cursosInscrito');
 
 // *Administrador
@@ -53,20 +53,20 @@ Route::post('administrar-registros-DD','Auth\RegisterController@administrarDivis
 //
 
 //Evaluar el curso del cual el usuario se inscribio
-Route::get('evaluar-curso','ControladorUsuario@mostrarFormEvaluar')->name('mostrarFormEvaluar')->middleware('auth');
-Route::post('evaluar-curso','ControladorUsuario@evaluarCurso')->name('evaluarCurso')->middleware('auth');
+Route::get('evaluarCurso', 'ControladorUsuario@mostrarFormEvaluar')->name('mostrarFormEvaluar')->middleware('auth');
+Route::post('evaluarCurso', 'ControladorUsuario@evaluarCurso')->name('evaluarCurso')->middleware('auth');
 // Route::get('cursos-a-evaluar','ControladorCursos@cursosAevaluar')->name('listaCursosEvaluar');
 //
 
 //Evaluar encargado del curso de actualizacion al cual el usuario se inscribio
-Route::get('evaluar-encargado','ControladorUsuario@mostrarEvaluarEncargado')->name('mostrarEvaluarEncargado')->middleware('auth');
-Route::post('evaluar-encargado','ControladorUsuario@evaluarEncargado')->name('evaluarEncargado')->middleware('auth');
+Route::get('evaluar-encargado', 'ControladorUsuario@mostrarEvaluarEncargado')->name('mostrarEvaluarEncargado')->middleware('auth');
+Route::post('evaluar-encargado', 'ControladorUsuario@evaluarEncargado')->name('evaluarEncargado')->middleware('auth');
 
 // El login del programador
-Route::get('loginPro','Auth\LoginProController@mostrarLoginPro')->name('loginPro');
-Route::post('loginPro','Auth\LoginProController@loginPro')->name('loginPro.submit');
+Route::get('loginPro', 'Auth\LoginProController@mostrarLoginPro')->name('loginPro');
+Route::post('loginPro', 'Auth\LoginProController@loginPro')->name('loginPro.submit');
 
 // Aprobar curso pendiente (consejo divisional)
 Route::get('evaluar-curso', 'ControladorUsuario@evaluarCursoConsejo')->name('evaluarCursoConsejo')->middleware('auth');
 Route::post('evaluar-curso', 'ControladorUsuario@guardarEvaluacionConsejo')->name('guardarEvaluacionConsejo')->middleware('auth');
-Route::post('logoutPro','Auth\LoginProController@logoutPro')->name('logoutPro');
+Route::post('logoutPro', 'Auth\LoginProController@logoutPro')->name('logoutPro');
