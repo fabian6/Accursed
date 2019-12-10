@@ -22,8 +22,9 @@ Route::get('/crear-curso','ControladorProgramador@crear_curso')->name('crear_cur
 Route::post('/crear-curso', 'ControladorProgramador@programadorCrearCurso')->name('crearcurso');
 
 //*Instructor
+Route::get('/instructor-cursos','ControladorProgramador@instructor_cursos')->name('instructor-cursos');
 Route::get('/evaluar-alumno','ControladorProgramador@evaluar_alumno')->name('evaluar-alumno');
-Route::get('/enviar-evaluacion-alumno','ControladorProgramador@enviar_evaluacion_alumno');
+Route::get('enviar-evaluacion-alumno','ControladorProgramador@enviar_evaluacion_alumno')->name('enviar-evaluacion-alumno');
 
 // CURSOS DE ACTUALIZACION
 Route::resource('cursos','ControladorCursos');
@@ -63,3 +64,4 @@ Route::post('evaluar-encargado','ControladorUsuario@evaluarEncargado')->name('ev
 // El login del programador
 Route::get('loginPro','Auth\LoginProController@mostrarLoginPro')->name('loginPro');
 Route::post('loginPro','Auth\LoginProController@loginPro')->name('loginPro.submit');
+Route::post('logoutPro','Auth\LoginProController@logoutPro')->name('logoutPro');

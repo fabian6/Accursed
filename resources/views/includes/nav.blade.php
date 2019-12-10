@@ -39,10 +39,18 @@
                         @endif
                     </b> </li>
                     <li class="divider"></li>
-                    <form id = 'cerrarSesionForm' action="{{ route('cerrarSesion') }}" method="POST">
-                        @csrf
-                        <a class="btn btn-default btn-block" onclick="cerrarSesionForm.submit();" > <i class="fa fa-power-off"></i> Cerrar sesión</a>
-                    </form>
+                    @if (auth()->user()->rol == 'instructor' || auth()->user()->rol == 'responsable' || auth()->user()->rol == 'ambos')
+                        <form  method="POST" action="{{ route('logoutPro') }}">
+                            @csrf
+                            <button class="btn btn-default btn-block" type="submit"> <i class="fa fa-power-off"></i> Cerrar sesión</button>
+                        </form>
+                    @else
+                        <form id = 'cerrarSesionForm' action="{{ route('cerrarSesion') }}" method="POST">
+                            @csrf
+                            <a class="btn btn-default btn-block" onclick="cerrarSesionForm.submit();" > <i class="fa fa-power-off"></i> Cerrar sesión</a>
+                        </form>
+                    @endif
+
                 </ul>
             @endauth
             
@@ -58,51 +66,54 @@
         <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
+                @if (auth()->user()->rol == 'alumno')
                     <li class="mt">
-                            <a class="active" href="{{route('cursosInscrito')}}">
-                                <i class="fa fa-plus-square-o"></i><span>Tus cursos</span>
-                            </a>
-                        </li>
-                    
-                {{-- @if ( Auth::ProgramadorCurso()->rol != "instructor" )
-                    <li class="mt">
-                        <a class="active" href="#">
+                        <a class="active" href="{{route('cursosInscrito')}}">
+                            <i class="fa fa-plus-square-o"></i><span>Tus cursos</span>
+                        </a>
+                    </li>
+                @endif
+
+                @if ( auth()->user()->rol == "responsable" || auth()->user()->rol == "ambos" )
+                    <li class="">
+                        <a class="" href="crear-curso">
                             <i class="fa fa-plus-square-o"></i><span>Crear Nuevo curso</span>
                         </a>
                     </li>
-                    <li class="mt">
-                        <a class="active" href="#">
+                    <li class="">
+                        <a class="" href="#">
                             <i class="fa fa-share"></i><span>Mis Propuestas</span>
                         </a>
                     </li>
                 @endif
-                @if ( Auth::guard('programador')->user() )
+                @if ( auth()->user()->rol == "responsable" || auth()->user()->rol == "ambos" || auth()->user()->rol == "instructor" )
                     <li class="sub-menu">
-                        <a href="javascript:;">
+                        <a class="active" href="javascript:;">
                             <i class="fa fa-th"></i><span>Mis Cursos</span>
                         </a>
                         <ul class="sub">
-                            <li><a href="">General</a></li>
-                            <li><a href="">Buttons</a></li>
-                            <li><a href="">Panels</a></li>
-                            <li><a href="">Font Awesome</a></li>
+                            @if ($cursosProgramador->count()>0)
+                                @foreach ($cursosProgramador as $curso)
+                                    @if ($curso->estado == "Aprobado")
+                                        <li>
+                                            <form action="{{route('enviar-evaluacion-alumno')}}" method="GET">
+                                                <input type="hidden" name="curso" value="{{$curso->id}}">
+                                                <button type="submit"><i class="fa fa-book">{{$curso->nombre}}</i><span class="label label-success">Aprobada</span></button>
+                                            </form>
+                                        </li>
+                                    @else
+                                        
+                                    @endif
+                                    
+                                @endforeach
+                            @else
+
+                            @endif
+                            
+                            
                         </ul>
                     </li>
                 @endif
-                @if ( Auth::Usuario() )
-                    <li class="sub-menu">
-                        <a href="javascript:;">
-                            <i class="fa fa-th"></i><span>Mis Cursos</span>
-                        </a>
-                        <ul class="sub">
-                            <li><a href="">General</a></li>
-                            <li><a href="">Buttons</a></li>
-                            <li><a href="">Panels</a></li>
-                            <li><a href="">Font Awesome</a></li>
-                        </ul>
-                    </li>
-                @endif --}}
-
             </ul>
             <!-- sidebar menu end-->
         </div>

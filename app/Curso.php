@@ -17,7 +17,7 @@ class Curso extends Model
     public $timestamps = false;
 
     public function usuarios(){
-        return $this->belongsToMany('App\Usuario','cursos_usuarios');
+        return $this->belongsToMany('App\Usuario','cursos_usuarios')->withPivot(['aprobado']);
     }
 
     public function programadores(){
