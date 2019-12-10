@@ -28,7 +28,21 @@
                                 <tbody>
                                     @foreach ($cursosProgramador as $curso)
                                         <tr>
-                                            <td style="color: black;">{{$curso->nombre}}</td>
+                                            <td style="color: black;">
+
+                                                @if ($curso->estado == "Aprobado")
+                                                    <form action="{{route('enviar-evaluacion-alumno')}}" method="GET">
+                                                        <input type="hidden" name="curso" value="{{$curso->id}}">
+                                                        <button class="btn" type="submit"><i class="fa fa-book">{{$curso->nombre}}</i><span class="label label-success">Aprobada</span></button>
+                                                    </form>
+                                                @endif
+                                                @if ($curso->estado == "Pendiente")
+                                                    <button class="btn" ><i class="fa fa-book">{{$curso->nombre}}</i><span class="label label-warning">Pendiente</span></button>
+                                                @endif
+                                                @if ($curso->estado == 'Concluido')
+                                                    <button class="btn" ><i class="fa fa-book">{{$curso->nombre}}</i><span class="label label-info">Concluido</span></button>
+                                                @endif
+                                            </td>
                                             <td class="text-center" style="color: black;">{{$curso->cupo_disponible}}</td>
                                             <td class="text-center" style="color: black;">{{$curso->horario}}</td>
                                         </tr>

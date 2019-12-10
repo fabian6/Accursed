@@ -85,38 +85,17 @@
                             <i class="fa fa-plus-square-o"></i><span>Crear Nuevo curso</span>
                         </a>
                     </li>
-                    <li class="">
+{{--                     <li class="">
                         <a class="" href="#">
                             <i class="fa fa-share"></i><span>Mis Propuestas</span>
                         </a>
-                    </li>
+                    </li> --}}
                 @endif
                 @if ( auth()->user()->rol == "responsable" || auth()->user()->rol == "ambos" || auth()->user()->rol == "instructor" )
                     <li class="sub-menu">
-                        <a class="active" href="javascript:;">
+                        <a class="active" href="instructor-cursos">
                             <i class="fa fa-th"></i><span>Mis Cursos</span>
                         </a>
-                        <ul class="sub">
-                            @if ($cursosProgramador->count()>0)
-                                @foreach ($cursosProgramador as $curso)
-                                    @if ($curso->estado == "Aprobado")
-                                        <li>
-                                            <form action="{{route('enviar-evaluacion-alumno')}}" method="GET">
-                                                <input type="hidden" name="curso" value="{{$curso->id}}">
-                                                <button type="submit"><i class="fa fa-book">{{$curso->nombre}}</i><span class="label label-success">Aprobada</span></button>
-                                            </form>
-                                        </li>
-                                    @else
-                                        
-                                    @endif
-                                    
-                                @endforeach
-                            @else
-
-                            @endif
-                            
-                            
-                        </ul>
                     </li>
                 @endif
             </ul>

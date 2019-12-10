@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Curso;
+use App\Usuario;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +18,7 @@ class ControladorProgramador extends Controller{
     }
 
     public function instructor_cursos(){
-        $cursos = Curso::all();
+        //$cursos = Curso::all();
         $cursosProgramador = Curso::whereHas('programadores.cursos', function ($query) {
             $programador = Auth::user();
             $query->where('programador_curso_id',$programador->id );
@@ -25,13 +26,37 @@ class ControladorProgramador extends Controller{
         return view('programadorCursos.instructor_cursos', compact('cursosProgramador'));
     }
 
-    public function evaluar_alumno(){
-        $cursos = Curso::all();
-        $cursosProgramador = Curso::whereHas('programadores.cursos', function ($query) {
-            $programador = Auth::user();
-            $query->where('programador_curso_id',$programador->id );
-        })->get();
-        return view('programadorCursos.instructor_evaluarAlumno',compact('cursosProgramador'));
+    public function evaluar_alumno(Request $request){
+        $alumno = Usuario::findOrFail($request->alumno);
+        $curso = Curso::findOrFail($request->curso);
+        return view('programadorCursos.instructor_evaluarAlumno',compact('alumno', 'curso'));
+    }
+
+    public function guardar_evaluacion_alumno(Request $request){
+        //dd($request);
+        $alumno = Usuario::findOrFail($request->alumno);
+        $curso = Curso::findOrFail($request->curso);
+        //dd($alumno->cursos[0]->pivot->curso_id);
+        //dd($alumno->cursos[0]->pivot->aprobado);
+        if($request->aprobado == null){
+            return redirect()->back();
+        }
+        //dd($alumno->cursos[0]->pivot, $alumno->cursos);
+        /* $num = (int)$request->curso;
+        $num = $num - 1; */
+        //$alumno->cursos;
+        //dd($curso->id);
+        // dd($alumno->cursos);
+        $alumno->cursos()->updateExistingPivot($curso->id,['aprobado'=>$request->aprobado]);
+        //dd($alumno->cursos[0]->pivot->aprobado);
+        return redirect()->intended(route('enviar-evaluacion-alumno',compact('curso')));
+    }
+
+    public function guardar_curso_concluido(Request $request){
+        $curso = Curso::findOrFail($request->curso);
+        $curso->estado = 'Concluido';
+        $curso->save();
+        return redirect('instructor-cursos');
     }
 
     public function enviar_evaluacion_alumno(Request $request){
@@ -39,20 +64,12 @@ class ControladorProgramador extends Controller{
         //dd($cursol->usuarios);
         $curso = Curso::find($request->curso);
         //dd($curso);
-        $cursosProgramador = Curso::whereHas('programadores.cursos', function ($query) {
-            $programador = Auth::user();
-            $query->where('programador_curso_id',$programador->id );
-        })->get();
-        return view('programadorCursos.instructor_enviarEvaluacionAlumno',compact('cursosProgramador','curso'));
+        return view('programadorCursos.instructor_enviarEvaluacionAlumno',compact('curso'));
     }
 
     // Responsable del curso
     public function crear_curso(){
-        $cursosProgramador = Curso::whereHas('programadores.cursos', function ($query) {
-            $programador = Auth::user();
-            $query->where('programador_curso_id',$programador->id );
-        })->get();
-        return view('programadorCursos.responsable_crearCurso',compact('cursosProgramador'));
+        return view('programadorCursos.responsable_crearCurso');
     }
 
     public function programadorCrearCurso(Request $request){

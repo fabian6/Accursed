@@ -22,9 +22,11 @@ Route::get('/crear-curso','ControladorProgramador@crear_curso')->name('crear_cur
 Route::post('/crear-curso', 'ControladorProgramador@programadorCrearCurso')->name('crearcurso');
 
 //*Instructor
-Route::get('/instructor-cursos','ControladorProgramador@instructor_cursos')->name('instructor-cursos');
-Route::get('/evaluar-alumno','ControladorProgramador@evaluar_alumno')->name('evaluar-alumno');
+Route::get('instructor-cursos','ControladorProgramador@instructor_cursos')->name('instructor-cursos');
+Route::get('evaluar-alumno','ControladorProgramador@evaluar_alumno')->name('evaluar-alumno');
 Route::get('enviar-evaluacion-alumno','ControladorProgramador@enviar_evaluacion_alumno')->name('enviar-evaluacion-alumno');
+Route::post('guardar_evaluacion_alumno','ControladorProgramador@guardar_evaluacion_alumno')->name('guardar_evaluacion_alumno');
+Route::post('guardar_curso_concluido','ControladorProgramador@guardar_curso_concluido')->name('guardar_curso_concluido');
 
 // CURSOS DE ACTUALIZACION
 Route::resource('cursos','ControladorCursos');
@@ -48,7 +50,6 @@ Route::get('tus-cursos', 'ControladorUsuario@listaCursosInscrito')->name('cursos
 Route::get('administrar-registros','Auth\RegisterController@mostrarFormRegistroAdmin')->name('administrar-registros');
 Route::post('administrar-registros','Auth\RegisterController@administrarProgramador')->name('administrarRegistros');
 Route::post('administrar-registros-DD','Auth\RegisterController@administrarDivisionalyDirector')->name('administrarRegistrosDD');
-Route::get('tus-cursos', 'ControladorUsuario@listaCursosInscrito')->name('cursosInscrito')->middleware('auth');
 //
 
 //Evaluar el curso del cual el usuario se inscribio

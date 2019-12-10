@@ -13,11 +13,11 @@
       <div class="col-lg-10 main-chart">
         <!--CUSTOM CHART START -->
         <div class="border-head">
-          <h3 style="color: black;"><i class="fa fa-angle-right"></i> <b>Curso : {Inserte nombre de curso aqui}</b> </h3>
+          <h3 style="color: black;"><i class="fa fa-angle-right"></i> <b>Curso : {{$curso->nombre}}</b> </h3>
         </div>
         <!--custom chart end-->
         <div class="row mt">
-          <h4 style="color: black;">Alumno : {Inserte nombre de alumno aqui}</h4><hr>
+          <h4 style="color: black;">Alumno : {{$alumno->nombre}}</h4><hr>
           <table class="table table-advance table-hover">
               <thead >
                 <tr>
@@ -38,12 +38,19 @@
           </table>
         </div>
         <div class="row" style="color: black;">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="aprobacion" value="0"> Reprobado
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <input type="radio" name="aprobacion" value="1"> Aprobado
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button type="button" class="btn btn-round btn-success">Guardar</button>
+          
+          <form action="{{ route('guardar_evaluacion_alumno') }}" method="POST">
+            @csrf
+            <input type="hidden" name="alumno" value="{{$alumno->id}}">
+            <input type="hidden" name="curso" value="{{$curso->id}}">
+            {{-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --}}
+            <input type="radio" name="aprobado" value="Reprobado"> Reprobado</input>
+            {{-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --}}
+            <input type="radio" name="aprobado" value="Aprobado"> Aprobado</input>
+            {{-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --}}
+            <button type="submit" class="btn btn-round btn-success">Guardar</button>
+          </form>
+
         </div>
 
       </div>
