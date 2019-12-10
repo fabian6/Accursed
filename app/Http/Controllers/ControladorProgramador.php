@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 
 class ControladorProgramador extends Controller{
 
+    public function __construct(){
+        $this->middleware('auth:programador');
+    }
+
     // protected function validator(array $data)
     // {
     //     return Validator::make($data, [

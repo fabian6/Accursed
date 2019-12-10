@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class ProgramadorCurso extends Authenticatable
 {
+    protected $guard = 'programador';
     protected $table='programadores_del_curso';
     protected $fillable = [
         'nombre', 'apellido','expediente','email','password','rol',

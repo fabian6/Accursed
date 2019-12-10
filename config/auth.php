@@ -48,6 +48,19 @@ return [
             // 'provider' => 'programador',
             'hash' => false,
         ],
+
+        'programador' => [
+            'driver' => 'session',
+            'provider' => 'programadores',
+            //  'provider' => 'programador',
+        ],
+
+        'programador-api' => [
+            'driver' => 'token',
+            'provider' => 'programadores',
+            // 'provider' => 'programador',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -72,10 +85,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Usuario::class,
         ],
-        // 'programador' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\ProgramadorCurso::class,
-        // ],
+        'programadores' => [
+            'driver' => 'eloquent',
+            'model' => App\ProgramadorCurso::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -101,6 +114,12 @@ return [
     'passwords' => [
         'usuario' => [
             'provider' => 'usuario',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+
+        'programadores' => [
+            'provider' => 'programadores',
             'table' => 'password_resets',
             'expire' => 60,
         ],

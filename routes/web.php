@@ -22,7 +22,7 @@ Route::get('/crear-curso','ControladorProgramador@crear_curso')->name('crear_cur
 Route::post('/crear-curso', 'ControladorProgramador@programadorCrearCurso')->name('crearcurso');
 
 //*Instructor
-Route::get('/evaluar-alumno','ControladorProgramador@evaluar_alumno');
+Route::get('/evaluar-alumno','ControladorProgramador@evaluar_alumno')->name('evaluar-alumno');
 Route::get('/enviar-evaluacion-alumno','ControladorProgramador@enviar_evaluacion_alumno');
 
 // CURSOS DE ACTUALIZACION
@@ -59,3 +59,7 @@ Route::post('evaluar-curso','ControladorUsuario@evaluarCurso')->name('evaluarCur
 //Evaluar encargado del curso de actualizacion al cual el usuario se inscribio
 Route::get('evaluar-encargado','ControladorUsuario@mostrarEvaluarEncargado')->name('mostrarEvaluarEncargado')->middleware('auth');
 Route::post('evaluar-encargado','ControladorUsuario@evaluarEncargado')->name('evaluarEncargado')->middleware('auth');
+
+// El login del programador
+Route::get('loginPro','Auth\LoginProController@mostrarLoginPro')->name('loginPro');
+Route::post('loginPro','Auth\LoginProController@loginPro')->name('loginPro.submit');
