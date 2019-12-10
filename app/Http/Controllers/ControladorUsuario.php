@@ -125,6 +125,31 @@ class ControladorUsuario extends Controller
 
     }
 
+    /*
+
+    evaluarCurso() se encarga gestionar la evaluacion que hace un usuario del consejo divisional para aprobar o rechazar 
+    una propuesta de curso. Primero busca aquellos cursos que estan pendientes, y los compacta hacia una vista 
+    */
+    public function evaluarCursoConsejo(Request $request){
+        $cursos_pendientes = Curso::all()->filter(function($item) {
+            return $item->estado == "Pendiente";
+        });
+        return view('cursos.evaluarCursoConsejo', compact('cursos_pendientes'));
+    }
+
+    public function guardarEvaluacionConsejo(Request $request){
+        $usuario= Usuario::findOrFail(auth()->user()->id);
+        $idCurso = $request->idCurso;
+        $curso = Curso::findOrFail($idCurso);
+        if ($request->Evaluar == "Aprobado") {
+            $curso->estado = "Aprobado";
+        }else{
+            $curso->estado = "Rechazado";
+        }
+        $curso->save();
+        return redirect('/');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

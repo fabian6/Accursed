@@ -63,3 +63,7 @@ Route::post('evaluar-encargado','ControladorUsuario@evaluarEncargado')->name('ev
 // El login del programador
 Route::get('loginPro','Auth\LoginProController@mostrarLoginPro')->name('loginPro');
 Route::post('loginPro','Auth\LoginProController@loginPro')->name('loginPro.submit');
+
+// Aprobar curso pendiente (consejo divisional)
+Route::get('evaluar-curso', 'ControladorUsuario@evaluarCursoConsejo')->name('evaluarCursoConsejo')->middleware('auth');
+Route::post('evaluar-curso', 'ControladorUsuario@guardarEvaluacionConsejo')->name('guardarEvaluacionConsejo')->middleware('auth');

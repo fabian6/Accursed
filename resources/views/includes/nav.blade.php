@@ -39,6 +39,9 @@
                         @endif
                     </b> </li>
                     <li class="divider"></li>
+                    @if (auth()->user()->rol == 'consejo')
+                        
+                    @endif
                     <form id = 'cerrarSesionForm' action="{{ route('cerrarSesion') }}" method="POST">
                         @csrf
                         <a class="btn btn-default btn-block" onclick="cerrarSesionForm.submit();" > <i class="fa fa-power-off"></i> Cerrar sesión</a>
