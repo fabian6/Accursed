@@ -39,6 +39,11 @@
                         @endif
                     </b> </li>
                     <li class="divider"></li>
+                    @if (auth()->user()->rol == 'consejo')
+                        <li><b>
+                            <a href="evaluar-curso"> Evaluar curso </a>
+                        </li></b>
+                    @endif
                     @if (auth()->user()->rol == 'instructor' || auth()->user()->rol == 'responsable' || auth()->user()->rol == 'ambos')
                         <form  method="POST" action="{{ route('logoutPro') }}">
                             @csrf
