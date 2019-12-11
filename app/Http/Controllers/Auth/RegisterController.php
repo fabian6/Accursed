@@ -107,31 +107,4 @@ class RegisterController extends Controller
         return view('admin.administrar_registros');
     }
     
-    public function administrarProgramador(Request $request){
-        $programador = new ProgramadorCurso();
-        // dd($request->email, $request->expediente);
-        $programador->nombre = $request->nombre;
-        $programador->apellido= $request->apellido;
-        $programador->email = $request->email;
-        $programador->password = bcrypt(request('password'));
-        $programador->rol = $request->rol;
-        $programador->expediente = $request->expediente;
-        $programador->save();
-        return redirect('/administrar-registros');
-
-    }
-
-    public function administrarDivisionalyDirector(Request $request){
-        $usuario = new Usuario();
-        // dd($request->email, $request->expediente);
-        $usuario->nombre = $request->nombre;
-        $usuario->apellido= $request->apellido;
-        $usuario->email = $request->email;
-        $usuario->provinencia= "unison";
-        $usuario->password = bcrypt(request('password'));
-        $usuario->rol = $request->rol;
-        $usuario->save();
-        return redirect('/administrar-registros');
-
-    }
 }
