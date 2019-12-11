@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 @extends('layouts.app')
 @section('content')
-<br><br><br><br><br><br>
+<section id="main-content">
+    <section class="wrapper">
+      <div class="row">
+        <br><br>
     <div class="container">
         <h1>Curso de actualización: {{$curso->nombre}}</h1>
         <form onsubmit="enviar()" action="{{route('evaluarCurso')}}" method ="POST">
@@ -36,6 +39,10 @@
             <button type="submit" value="Submit" class="btn btn-primary">Evaluar</button>
         </form>
     </div>
+      </div>
+      <!-- /row -->
+    </section>
+  </section>
 <script>
     function enviar() {
         alert("¡Evaluación registrada exitosamente!");
