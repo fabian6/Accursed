@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Curso;
+use App\ProgramadorCurso;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -48,11 +49,12 @@ class ControladorProgramador extends Controller{
 
     // Responsable del curso
     public function crear_curso(){
+        $programadores = ProgramadorCurso::all();
         $cursosProgramador = Curso::whereHas('programadores.cursos', function ($query) {
             $programador = Auth::user();
             $query->where('programador_curso_id',$programador->id );
         })->get();
-        return view('programadorCursos.responsable_crearCurso',compact('cursosProgramador'));
+        return view('programadorCursos.responsable_crearCurso',compact('cursosProgramador','programadores'));
     }
 
     public function programadorCrearCurso(Request $request){
@@ -66,11 +68,12 @@ class ControladorProgramador extends Controller{
         $curso->horario = $request->horario;
         $curso->aula = $request->aula;
         $curso->estado = "pendiente";
-        //$curso->exclusivo = $request->exclusivo;
+        $programador = ProgramadorCurso::findOrFail($request->programador);
         $curso->save();
+        $curso->programadores()->attach($programador);
+        //$curso->exclusivo = $request->exclusivo;
         return redirect('instructor-cursos');
     }
-
 
     /**
      * Store a newly created resource in storage.
