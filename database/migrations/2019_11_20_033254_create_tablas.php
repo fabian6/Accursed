@@ -23,7 +23,7 @@ class CreateTablas extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('provinencia');
-            $table->enum('rol',['alumno', 'foraneo','director','consejo']);
+            $table->enum('rol', ['alumno', 'foraneo', 'director', 'consejo']);
             $table->boolean('admin')->default(false);
             // $table->string('escuela_origen');
             $table->integer('expediente')->nullable();
@@ -38,7 +38,7 @@ class CreateTablas extends Migration
             $table->string('expediente')->nullable();
             $table->string('email');
             $table->string('password');
-            $table->enum('rol',['instructor','responsable','ambos']);
+            $table->enum('rol', ['instructor', 'responsable', 'ambos']);
             $table->timestamps();
         });
 
@@ -52,12 +52,12 @@ class CreateTablas extends Migration
             $table->string('fecha_final');
             $table->string('horario');
             $table->string('aula');
-            $table->enum('estado',['Aprobado','Concluido','Pendiente']);
+            $table->enum('estado', ['Aprobado', 'Concluido', 'Pendiente', 'Rechazado']);
             $table->boolean('exclusivo')->default(false);
             $table->timestamps();
         });
 
-         /**
+        /**
          * Tabla de los modulos del curso
          */
         Schema::create('modulos', function (Blueprint $table) {
@@ -71,10 +71,10 @@ class CreateTablas extends Migration
         /**
          * Se asigna a cursos_id de la tabla modulos como llave foranea de cursos.
          */
-        Schema::table('modulos',function(Blueprint $table){
+        Schema::table('modulos', function (Blueprint $table) {
             $table->foreign('curso_id')->references('id')->on('cursos')->onDelete('cascade')->onUpdate('cascade');
         });
-        
+
         /**
          * Tabla pivote de cursos y usuarios
          */
@@ -82,10 +82,9 @@ class CreateTablas extends Migration
             $table->increments('id');
             $table->integer('curso_id')->nullable()->unsigned();
             $table->integer('usuario_id')->nullable()->unsigned();
-            $table->enum('aprobado',['Aprobado','Reprobado','Pendiente'])->default('Pendiente');
+            $table->enum('aprobado', ['Aprobado', 'Reprobado', 'Pendiente'])->default('Pendiente');
             $table->boolean('curso_evaluado')->default(0);
             $table->boolean('encargado_evaluado')->default(0);
-            
         });
 
         /**
@@ -103,9 +102,6 @@ class CreateTablas extends Migration
             $table->increments('id');
             $table->integer('curso_id')->nullable()->unsigned();
             $table->integer('programador_curso_id')->nullable()->unsigned();
-            
-            
-            
         });
         /**
          * Se asigna a curso_id y programador_id de la tabla cursos_programadores como llaves foraneas
@@ -114,9 +110,6 @@ class CreateTablas extends Migration
             $table->foreign('curso_id')->references('id')->on('cursos')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('programador_curso_id')->references('id')->on('programadores_del_curso')->onDelete('cascade')->onUpdate('cascade');
         });
-        
-
-        
     }
 
     /**
