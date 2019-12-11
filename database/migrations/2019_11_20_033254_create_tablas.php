@@ -20,7 +20,7 @@ class CreateTablas extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('apellido');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
             $table->string('provinencia');
             $table->enum('rol', ['alumno', 'foraneo', 'director', 'consejo']);
@@ -36,7 +36,7 @@ class CreateTablas extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->string('expediente')->nullable();
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
             $table->enum('rol', ['instructor', 'responsable', 'ambos']);
             $table->timestamps();
