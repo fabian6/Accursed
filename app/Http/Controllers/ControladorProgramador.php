@@ -3,11 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Curso;
-<<<<<<< HEAD
-use App\ProgramadorCurso;
-=======
 use App\Usuario;
->>>>>>> 65dcbc2bbe78842607b73c3435906b5bcbf9ed39
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
